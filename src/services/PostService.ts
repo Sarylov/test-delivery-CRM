@@ -4,12 +4,12 @@ import { IPost } from "./../components/models/Post";
 export const postAPI = createApi({
   reducerPath: "postAPI",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://nodepadapi.herokuapp.com/api",
+    baseUrl: "https://jsonplaceholder.typicode.com",
   }),
   endpoints: (build) => ({
     fetchAllPosts: build.query<IPost[], number>({
       query: (limit: number = 5) => ({
-        url: "/records",
+        url: "/posts",
         params: {
           _limit: limit,
         },
