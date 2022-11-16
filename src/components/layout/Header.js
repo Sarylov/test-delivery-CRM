@@ -23,6 +23,7 @@ import {
 import { NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 import avtar from "../../assets/images/team-2.jpg";
+import { retry } from "@reduxjs/toolkit/dist/query";
 
 const ButtonContainer = styled.div`
   .ant-btn-primary {
@@ -253,11 +254,47 @@ function Header({
 
   const showDrawer = () => setVisible(true);
   const hideDrawer = () => setVisible(false);
-  const titlePage = {
+  const dictionary = {
     orders: "Заказы",
     сouriers: "Курьеры",
     rates: "Тарифы",
     partners: "Партнеры",
+  };
+
+  const drowBreadCrumb = (urlName) => {
+    if (urlName == "home") return;
+
+    let rez = [];
+    const names = urlName.split("/");
+
+    const getLink = (index) => {
+      let link = "/";
+      for (let i = 0; i <= index; i++) {
+        let partLink = i == index ? names[i] : names[i] + "/";
+        link += partLink;
+      }
+
+      return link;
+    };
+
+    names.forEach((name, index) => {
+      rez.push(
+        <Breadcrumb.Item key={name} style={{ textTransform: "capitalize" }}>
+          <NavLink to={getLink(index)}>
+            {dictionary[name.toLowerCase()]}
+          </NavLink>{" "}
+        </Breadcrumb.Item>
+      );
+    });
+    return rez;
+  };
+
+  const drowTitle = (urlName) => {
+    let rez = "";
+    let names = urlName.split("/");
+    let name = names[names.length - 1];
+    rez = dictionary[name.toLowerCase()];
+    return rez;
   };
 
   return (
@@ -269,18 +306,16 @@ function Header({
         <Col span={24} md={6}>
           <Breadcrumb>
             <Breadcrumb.Item>
-              <NavLink to="/">Страницы</NavLink>
+              <NavLink to="/home">Главная</NavLink>
             </Breadcrumb.Item>
-            <Breadcrumb.Item style={{ textTransform: "capitalize" }}>
-              {name.replace("/", "")}
-            </Breadcrumb.Item>
+            {drowBreadCrumb(subName)}
           </Breadcrumb>
           <div className="ant-page-header-heading">
             <span
               className="ant-page-header-heading-title"
               style={{ textTransform: "capitalize" }}
             >
-              {titlePage[subName.replace("/", "")]}
+              {drowTitle(subName)}
             </span>
           </div>
         </Col>
