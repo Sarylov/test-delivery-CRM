@@ -5,4 +5,5 @@ export interface TableProps extends React.HTMLAttributes<HTMLElement> {
   columns: { title: string; dataIndex: string; key: string }[];
   data: any[];
   pag?: boolean;
+  clickRow?: (props: any) => void;
 }

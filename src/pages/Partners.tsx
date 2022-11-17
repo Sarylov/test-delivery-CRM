@@ -1,7 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import TableLayout from "../components/layout/TableTayout/TableLayout";
 import Table from "../components/Table/Table";
 import { IPartners } from "../models/partners";
+import CouriersForm from "./../components/layout/Forms/CouriersForm/CouriersForm";
 
 export default function Partners() {
   const columns = [
@@ -63,7 +65,13 @@ export default function Partners() {
     <div>
       <NavLink to="/partners/rates">тарифы партнеров</NavLink>
 
-      <Table columns={columns} data={data} pag={false} />
+      
+      <TableLayout<IPartners>
+        columns={columns}
+        data={data}
+        form={CouriersForm}
+      />
+      
     </div>
   );
 }

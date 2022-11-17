@@ -1,6 +1,9 @@
 import React from "react";
+import CouriersForm from "../components/layout/Forms/CouriersForm/CouriersForm";
+import TableLayout from "../components/layout/TableTayout/TableLayout";
 import Table from "../components/Table/Table";
 import { IСouriersRates } from "../models/couriersRates";
+import { IPartnersRates } from "../models/partnersRates";
 
 export default function СouriersRates() {
   const columns = [
@@ -69,5 +72,14 @@ export default function СouriersRates() {
     },
   ];
 
-  return <div>{<Table columns={columns} data={data} pag={true} />}</div>;
+  return (
+    <div>
+      {/* {<Table columns={columns} data={data} pag={true} />} */}
+      <TableLayout<IPartnersRates>
+        columns={columns}
+        data={data}
+        form={CouriersForm}
+      />
+    </div>
+  );
 }

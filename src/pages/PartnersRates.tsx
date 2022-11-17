@@ -1,6 +1,8 @@
 import React from "react";
+import TableLayout from "../components/layout/TableTayout/TableLayout";
 import Table from "../components/Table/Table";
 import { IPartnersRates } from "../models/partnersRates";
+import CouriersForm from "../components/layout/Forms/CouriersForm/CouriersForm";
 
 export default function PartnersRates() {
   const columns = [
@@ -65,5 +67,14 @@ export default function PartnersRates() {
     },
   ];
 
-  return <div>{<Table columns={columns} data={data} pag={true} />}</div>;
+  return (
+    <div>
+      {/* {<Table columns={columns} data={data} pag={true} />} */}
+      <TableLayout<IPartnersRates>
+        columns={columns}
+        data={data}
+        form={CouriersForm}
+      />
+    </div>
+  );
 }

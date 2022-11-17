@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Table from "../components/Table/Table";
 import { ICouriers } from "../models/couriers";
+import Table from "../components/Table/Table";
+import CouriersForm from "./../components/layout/Forms/CouriersForm/CouriersForm";
+import { Button } from "antd";
+import Modal from "antd/lib/modal/Modal";
+import TableLayout from "../components/layout/TableTayout/TableLayout";
 
 export default function Couriers() {
   const columns = [
@@ -68,8 +72,11 @@ export default function Couriers() {
   return (
     <div>
       <NavLink to="/сouriers/rates">тарифы курьеров</NavLink>
-
-      <Table columns={columns} data={data} pag={false} />
+      <TableLayout<ICouriers>
+        columns={columns}
+        data={data}
+        form={CouriersForm}
+      />
     </div>
   );
 }
