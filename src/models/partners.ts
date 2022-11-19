@@ -1,12 +1,13 @@
 export interface IPartners {
-  key: string;
+  key: number;
+  id:number,
   organization: string;
   type: string;
   nickName: string;
   password: string;
   passwordCheck: string;
   phone: string;
-  adresses: string[];
+  adresses: {adress:string}[];
   rate: string;
   comment: string;
   timeCooking: number;

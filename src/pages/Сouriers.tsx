@@ -25,7 +25,6 @@ export default function Couriers() {
       filterMode: "tree",
       onFilter: (value: string, record: ICouriers) =>
         record.movementType.includes(value),
-      width: "30%",
     },
     { title: "тариф", dataIndex: "rate", key: "rate" },
     { title: "комментарий", dataIndex: "comment", key: "comment" },
@@ -40,27 +39,28 @@ export default function Couriers() {
       filterMode: "tree",
       onFilter: (value: string, record: ICouriers) =>
         record.status.startsWith(value),
-      width: "30%",
     },
   ];
 
   const data: ICouriers[] = [
     {
-      key: "1",
-      id: "123",
-      status: "не работает",
+      key: 1,
+      id: 312,
+      active:"на линии",
+      status: "работает",
       fullName: "олег олеговичь вололоав",
       phone: "+79618428824",
       nickName: "oleg",
       comment: "хороший работник",
-      movementType: "машина",
+      movementType: "велосипед",
       rate: "потом придумаю",
       password: "123",
       passwordCheck: "123",
     },
     {
-      key: "2",
-      id: "321",
+      key: 2,
+      id: 321,
+      active:"на линии",
       status: "работает",
       fullName: "олег олеговичь вололоав",
       phone: "+79618428824",

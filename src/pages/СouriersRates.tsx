@@ -1,9 +1,6 @@
-import React from "react";
-import CouriersForm from "../components/layout/Forms/CouriersForm/CouriersForm";
+import CouriersRatesForm from "../components/layout/Forms/СouriersRatesForm/СouriersRatesForm";
 import TableLayout from "../components/layout/TableTayout/TableLayout";
-import Table from "../components/Table/Table";
 import { IСouriersRates } from "../models/couriersRates";
-import { IPartnersRates } from "../models/partnersRates";
 
 export default function СouriersRates() {
   const columns = [
@@ -47,38 +44,36 @@ export default function СouriersRates() {
       filterMode: "tree",
       onFilter: (value: string, record: IСouriersRates) =>
         record.activity.startsWith(value),
-      width: "30%",
     },
   ];
 
   const data: IСouriersRates[] = [
     {
-      key: "1",
+      key: 1,
+      id:1,
       name: "оптимальный",
-      type: "ресторан",
       takePrice: 10,
       shipmentPrice: 20,
       kmPrice: 3,
       activity: "включен",
     },
     {
-      key: "2",
+      key: 2,
+      id:2,
       name: "оптимальный",
-      type: "ресторан",
-      takePrice: 20,
-      shipmentPrice: 30,
-      kmPrice: 5,
-      activity: "выключен",
+      takePrice: 10,
+      shipmentPrice: 20,
+      kmPrice: 3,
+      activity: "включен",
     },
   ];
 
   return (
     <div>
-      {/* {<Table columns={columns} data={data} pag={true} />} */}
-      <TableLayout<IPartnersRates>
+      <TableLayout<IСouriersRates>
         columns={columns}
         data={data}
-        form={CouriersForm}
+        form={CouriersRatesForm}
       />
     </div>
   );

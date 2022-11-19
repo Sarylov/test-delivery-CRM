@@ -50,7 +50,6 @@ export default function Orders() {
       filterMode: "tree",
       onFilter: (value: string, record: IOrders) =>
         record.paymentStatues.startsWith(value),
-      width: "30%",
     },
     { title: "тип оплаты", dataIndex: "paymentType", key: "paymentType" },
     { title: "сумма", dataIndex: "orderPrice", key: "orderPrice" },

@@ -93,7 +93,7 @@ function TableLayout<T>({ columns, data, form, ...props }: TableLayoutProps) {
         {openModalAddRow && modalAdd()}
         {openModalEditRow && modalEdit()}
 
-        <Button type="primary" onClick={() => showModal("add")}>
+        <Button className="btn-add" type="primary" onClick={() => showModal("add")}>
           добавить
         </Button>
 

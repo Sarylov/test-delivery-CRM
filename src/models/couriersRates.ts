@@ -1,10 +1,9 @@
 export interface IСouriersRates {
-  key: string;
+  key: number;
+  id:number;
   name: string;
-  type: string;
   takePrice: number;
   shipmentPrice: number;
-
   kmPrice: number;
   activity: string;
 }

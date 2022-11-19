@@ -8,7 +8,6 @@ import { IPartners } from "../models/partners";
 export default function Partners() {
   const columns = [
     { title: "организация", dataIndex: "organization", key: "organization" },
-    { title: "тип", dataIndex: "type", key: "type" },
     { title: "логин", dataIndex: "nickName", key: "nickName" },
     { title: "телефон", dataIndex: "phone", key: "phone" },
     { title: "адресы", dataIndex: "addresses", key: "addresses" },
@@ -30,18 +29,18 @@ export default function Partners() {
       filterMode: "tree",
       onFilter: (value: string, record: IPartners) =>
         record.status.startsWith(value),
-      width: "30%",
     },
   ];
 
   const data: IPartners[] = [
     {
-      key: "123",
+      key: 1,
+      id: 1,
       organization: "kfc",
       type: "ресторан",
       nickName: "kfc",
       phone: "+7 9618428224",
-      adresses: ["адрес1", "адрес2"],
+      adresses: [{ adress: "адрес1" }, { adress: "адрес2" }],
       rate: "продвинутый",
       comment: "хороший ресторан",
       timeCooking: 20,
@@ -50,12 +49,13 @@ export default function Partners() {
       passwordCheck: "123",
     },
     {
-      key: "124",
+      key: 2,
+      id: 2,
       organization: "kfc",
       type: "ресторан",
       nickName: "kfc",
       phone: "+7 9618428224",
-      adresses: ["адрес1", "адрес2"],
+      adresses: [{ adress: "адрес1" }, { adress: "адрес2" }],
       rate: "продвинутый",
       comment: "хороший ресторан",
       timeCooking: 20,

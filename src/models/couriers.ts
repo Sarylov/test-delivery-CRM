@@ -1,8 +1,9 @@
 export interface ICouriers {
-  key: string;
-  id: string;
-  status: string;
+  key: number;
+  id: number;
+  status: "работает"|"не работает";
   fullName: string;
+  active:"на линии"|"не на линии"
   phone: string;
   nickName: string;
   comment?: string;

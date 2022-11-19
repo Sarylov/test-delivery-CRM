@@ -27,15 +27,13 @@ const CouriersForm: FC<CouriersFormProps> = ({
     console.log("Failed:", errorInfo);
   };
 
-  // const checkError = ({ getFieldValue }) => {};
-
   return (
     <div {...props}>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 9 }}
         wrapperCol={{ span: 16 }}
-        initialValues={{ remember: false }}
+        initialValues={editData && { ...editData }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         // autoComplete="off"
@@ -44,7 +42,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           label="ФИО"
           name="fullName"
           rules={[{ required: true, message: "Введите ФИО" }]}
-          initialValue={editData && editData.fullName}
         >
           <Input />
         </Form.Item>
@@ -53,7 +50,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           label="телефон"
           name="phone"
           rules={[{ required: true, message: "введите номер телефона" }]}
-          initialValue={editData && editData.phone}
         >
           <Input />
         </Form.Item>
@@ -62,7 +58,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           label="логин"
           name="nickName"
           rules={[{ required: true, message: "Введите логин" }]}
-          initialValue={editData && editData.nickName}
         >
           <Input />
         </Form.Item>
@@ -70,7 +65,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
         <Form.Item
           label="Пароль"
           name="password"
-          initialValue={editData && editData.password}
           rules={[
             { required: true, message: "введите пароль" },
             () => ({
@@ -91,7 +85,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           label="Подтверждение пароля"
           dependencies={["password"]}
           hasFeedback
-          initialValue={editData && editData.passwordCheck}
           rules={[
             {
               required: true,
@@ -114,7 +107,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           name="movementType"
           label="тип транспорта"
           rules={[{ required: true, message: "выберите тип транспорта!" }]}
-          initialValue={editData && editData.movementType}
         >
           <Select placeholder="выберите тип транспорта">
             <Select.Option value="машина">машина</Select.Option>
@@ -127,7 +119,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           name="rate"
           label="тариф"
           rules={[{ required: true, message: "выберите тариф!" }]}
-          initialValue={editData && editData.rate}
         >
           <Select placeholder="выберите тариф">
             {rates.map((r) => (
@@ -142,7 +133,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           name="status"
           label="статус"
           rules={[{ required: true, message: "выберите статус!" }]}
-          initialValue={editData ? editData.status : "работает"}
         >
           <Select placeholder="выберите статус">
             <Select.Option value="работает">работает</Select.Option>
@@ -154,7 +144,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
           name="comment"
           label="коментарий"
           // rules={[{ required: true, message: "введите коментарий" }]}
-          initialValue={editData?.comment && editData.comment}
         >
           <Input.TextArea showCount maxLength={1000} />
         </Form.Item>

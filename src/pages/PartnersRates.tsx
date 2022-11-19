@@ -2,7 +2,7 @@ import React from "react";
 import TableLayout from "../components/layout/TableTayout/TableLayout";
 import Table from "../components/Table/Table";
 import { IPartnersRates } from "../models/partnersRates";
-import CouriersForm from "../components/layout/Forms/CouriersForm/CouriersForm";
+import PartnersRatesForm from "../components/layout/Forms/PartnersRatesForm/PartnersRatesForm";
 
 export default function PartnersRates() {
   const columns = [
@@ -50,7 +50,6 @@ export default function PartnersRates() {
       filterMode: "tree",
       onFilter: (value: string, record: IPartnersRates) =>
         record.activity.startsWith(value),
-      width: "30%",
     },
   ];
 
@@ -73,7 +72,7 @@ export default function PartnersRates() {
       <TableLayout<IPartnersRates>
         columns={columns}
         data={data}
-        form={CouriersForm}
+        form={PartnersRatesForm}
       />
     </div>
   );

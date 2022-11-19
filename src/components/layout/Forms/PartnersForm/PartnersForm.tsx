@@ -27,13 +27,28 @@ const PartnersForm: FC<PartnersFormProps> = ({
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  console.log(
+    editData && {
+      ...editData,
+      adresses: editData.adresses.map((a: { adress: string }) => a.adress),
+    }
+  );
+
   return (
     <div {...props}>
       <Form
         name="basic"
-        labelCol={{ span: 8 }}
+        labelCol={{ span: 9 }}
         wrapperCol={{ span: 16 }}
-        initialValues={{ remember: false }}
+        initialValues={
+          editData && {
+            ...editData,
+            adresses: editData.adresses.map(
+              (a: { adress: string }) => a.adress
+            ),
+          }
+        }
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -42,7 +57,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="Организция"
           name="organization"
           rules={[{ required: true, message: "Введите название организации" }]}
-          initialValue={editData && editData.organization}
         >
           <Input />
         </Form.Item>
@@ -51,7 +65,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="тип организации"
           name="type"
           rules={[{ required: true, message: "Введите тип организации" }]}
-          initialValue={editData && editData.type}
         >
           <Input />
         </Form.Item>
@@ -60,7 +73,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="логин"
           name="nickName"
           rules={[{ required: true, message: "Введите логин" }]}
-          initialValue={editData && editData.nickName}
         >
           <Input />
         </Form.Item>
@@ -69,7 +81,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="Пароль"
           name="password"
           rules={[{ required: true, message: "введите пароль" }]}
-          initialValue={editData && editData.password}
         >
           <Input.Password />
         </Form.Item>
@@ -78,7 +89,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="Подтверждение пароля"
           dependencies={["password"]}
           hasFeedback
-          initialValue={editData && editData.passwordCheck}
           rules={[
             {
               required: true,
@@ -101,7 +111,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="телефон"
           name="phone"
           rules={[{ required: true, message: "введите номер телефона" }]}
-          initialValue={editData && editData.phone}
         >
           <Input />
         </Form.Item>
@@ -112,46 +121,42 @@ const PartnersForm: FC<PartnersFormProps> = ({
           name="adresses"
           rules={[
             {
-              validator: async (_, adresses) => {
-                if (!adresses || adresses.length < 1) {
-                  return Promise.reject(new Error("введите хотя бы 1 адресс"));
+              validator: async (_, names) => {
+                if (!names || names.length < 1) {
+                  return Promise.reject(
+                    new Error("Введите хотя бы один адрес")
+                  );
                 }
               },
             },
           ]}
         >
-          {(
-            fields = editData && editData.adresses,
-            { add, remove },
-            { errors }
-          ) => (
+          {(fields, { add, remove }, { errors }) => (
             <>
-              {/* {editData && editData.adresses.map{}} */}
               {fields.map((field, index) => (
                 <Form.Item
-                  label={`адрес${index + 1}`}
-                  required={true}
-                  key={String(index)}
+                  label={`адрес ${index + 1}`}
+                  required={false}
+                  key={field.key}
                 >
                   <Form.Item
-                    // {...field}
+                    {...field}
                     validateTrigger={["onChange", "onBlur"]}
-                    initialValue={editData && editData.adresses[index].adress}
                     rules={[
                       {
                         required: true,
                         whitespace: true,
-                        message: "Введите адрес или удалите поле!",
+                        message: "заполните поле или удалите его !",
                       },
                     ]}
                     noStyle
                   >
-                    <Input style={{ width: "90%", marginRight: "10px" }} />
+                    <Input style={{ width: "90%" }} />
                   </Form.Item>
-
                   {fields.length > 1 ? (
                     <MinusCircleOutlined
                       className="dynamic-delete-button"
+                      style={{ marginLeft: "10px" }}
                       onClick={() => remove(field.name)}
                     />
                   ) : null}
@@ -161,6 +166,7 @@ const PartnersForm: FC<PartnersFormProps> = ({
                 <Button
                   type="dashed"
                   onClick={() => add()}
+                  style={{ width: "100%" }}
                   icon={<PlusOutlined />}
                 >
                   добавить адрес
@@ -175,7 +181,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           name="rate"
           label="тариф"
           rules={[{ required: true, message: "выберите тариф!" }]}
-          initialValue={editData && editData.rate}
         >
           <Select placeholder="выберите тариф">
             {rates.map((r) => (
@@ -190,7 +195,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           label="время приготовления"
           name="timeCooking"
           rules={[{ required: true, message: "введите время приготовления" }]}
-          initialValue={editData && editData.timeCooking}
         >
           <InputNumber />
         </Form.Item>
@@ -199,7 +203,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           name="status"
           label="статус"
           rules={[{ required: true, message: "выберите статус!" }]}
-          initialValue={editData ? editData.status : "работает"}
         >
           <Select placeholder="выберите статус">
             <Select.Option value="работает">работает</Select.Option>
@@ -211,7 +214,6 @@ const PartnersForm: FC<PartnersFormProps> = ({
           name="comment"
           label="коментарий"
           // rules={[{ required: true, message: "введите коментарий" }]}
-          initialValue={editData?.comment && editData.comment}
         >
           <Input.TextArea showCount maxLength={1000} />
         </Form.Item>
