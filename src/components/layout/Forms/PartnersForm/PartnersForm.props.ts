@@ -1,6 +1,5 @@
 import { iForm } from "../../../../models/form";
-import { ICouriers } from "./../../../../models/couriers";
 
-export interface CouriersFormProps
+export interface PartnersFormProps
   extends React.HTMLAttributes<HTMLElement>,
     iForm {}

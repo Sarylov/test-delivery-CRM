@@ -16,14 +16,10 @@ function TableLayout<T>({ columns, data, form, ...props }: TableLayoutProps) {
 
   const clickRowTable = (row: T): void => {
     setDataEdit(row);
+    setOpenModalEditRow(true);
+
     showModal("edit");
   };
-
-  useEffect(() => {
-    // вызываем модальное окно если есть данные для изменения
-    dataEdit && setOpenModalEditRow(true);
-    console.log(dataEdit);
-  }, [dataEdit]);
 
   // функция для открытия модального окна
   const showModal = (modalName: "add" | "edit") => {
@@ -53,12 +49,12 @@ function TableLayout<T>({ columns, data, form, ...props }: TableLayoutProps) {
     console.log("add c");
   };
 
-  return (
-    <div {...props}>
-      <div>
+  const modalAdd = (): JSX.Element => {
+    return (
+      <>
         <Modal
           title="Добавить"
-          open={openModalAddRow}
+          open={true}
           maskClosable={true}
           onCancel={() => hideModal("add")}
           cancelButtonProps={{ style: { display: "none" } }}
@@ -66,17 +62,36 @@ function TableLayout<T>({ columns, data, form, ...props }: TableLayoutProps) {
         >
           {form({ click: addCourier, hideModal: () => hideModal("add") })}
         </Modal>
+      </>
+    );
+  };
 
+  const modalEdit = (): JSX.Element => {
+    return (
+      <>
         <Modal
           title="Редактировать"
-          open={openModalEditRow}
+          open={true}
           maskClosable={true}
           onCancel={() => hideModal("edit")}
           cancelButtonProps={{ style: { display: "none" } }}
           okButtonProps={{ style: { display: "none" } }}
         >
-          {form({ click: addCourier, hideModal: () => hideModal("edit") })}
+          {form({
+            click: addCourier,
+            hideModal: () => hideModal("edit"),
+            editData: dataEdit,
+          })}
         </Modal>
+      </>
+    );
+  };
+
+  return (
+    <div {...props}>
+      <div>
+        {openModalAddRow && modalAdd()}
+        {openModalEditRow && modalEdit()}
 
         <Button type="primary" onClick={() => showModal("add")}>
           добавить

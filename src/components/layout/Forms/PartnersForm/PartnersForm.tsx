@@ -1,11 +1,10 @@
 import React, { FC, useEffect } from "react";
-import { CouriersFormProps } from "./CouriersForm.props";
-import "./CouriersForm.module.css";
-import { Button, Checkbox, Form, Input, Select } from "antd";
-import { ICouriers } from "../../../../models/couriers";
-import { Rule } from "antd/lib/form";
+import { PartnersFormProps } from "./PartnersForm.props";
+import { Button, Form, Input, InputNumber, Select } from "antd";
+import { IPartners } from "./../../../../models/partners";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 
-const CouriersForm: FC<CouriersFormProps> = ({
+const PartnersForm: FC<PartnersFormProps> = ({
   editData,
   click,
   hideModal,
@@ -18,7 +17,9 @@ const CouriersForm: FC<CouriersFormProps> = ({
     { name: "продвинутый", id: "324" },
   ];
 
-  const onFinish = (values: ICouriers) => {
+  const onFinish = (values: IPartners) => {
+    console.log("success:", values);
+
     click();
     hideModal && hideModal();
   };
@@ -26,9 +27,6 @@ const CouriersForm: FC<CouriersFormProps> = ({
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
-
-  // const checkError = ({ getFieldValue }) => {};
-
   return (
     <div {...props}>
       <Form
@@ -38,22 +36,22 @@ const CouriersForm: FC<CouriersFormProps> = ({
         initialValues={{ remember: false }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
-        // autoComplete="off"
+        autoComplete="off"
       >
         <Form.Item
-          label="ФИО"
-          name="fullName"
-          rules={[{ required: true, message: "Введите ФИО" }]}
-          initialValue={editData && editData.fullName}
+          label="Организция"
+          name="organization"
+          rules={[{ required: true, message: "Введите название организации" }]}
+          initialValue={editData && editData.organization}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="телефон"
-          name="phone"
-          rules={[{ required: true, message: "введите номер телефона" }]}
-          initialValue={editData && editData.phone}
+          label="тип организации"
+          name="type"
+          rules={[{ required: true, message: "Введите тип организации" }]}
+          initialValue={editData && editData.type}
         >
           <Input />
         </Form.Item>
@@ -70,22 +68,11 @@ const CouriersForm: FC<CouriersFormProps> = ({
         <Form.Item
           label="Пароль"
           name="password"
+          rules={[{ required: true, message: "введите пароль" }]}
           initialValue={editData && editData.password}
-          rules={[
-            { required: true, message: "введите пароль" },
-            () => ({
-              validator(_, value) {
-                if (value !== "") {
-                  return Promise.resolve();
-                }
-                return Promise.reject(new Error("пароли не совпадают!"));
-              },
-            }),
-          ]}
         >
           <Input.Password />
         </Form.Item>
-
         <Form.Item
           name="passwordCheck"
           label="Подтверждение пароля"
@@ -111,17 +98,78 @@ const CouriersForm: FC<CouriersFormProps> = ({
         </Form.Item>
 
         <Form.Item
-          name="movementType"
-          label="тип транспорта"
-          rules={[{ required: true, message: "выберите тип транспорта!" }]}
-          initialValue={editData && editData.movementType}
+          label="телефон"
+          name="phone"
+          rules={[{ required: true, message: "введите номер телефона" }]}
+          initialValue={editData && editData.phone}
         >
-          <Select placeholder="выберите тип транспорта">
-            <Select.Option value="машина">машина</Select.Option>
-            <Select.Option value="велосипед">велосипед</Select.Option>
-            <Select.Option value="пешком">пешком</Select.Option>
-          </Select>
+          <Input />
         </Form.Item>
+
+        {/* адреса */}
+
+        <Form.List
+          name="adresses"
+          rules={[
+            {
+              validator: async (_, adresses) => {
+                if (!adresses || adresses.length < 1) {
+                  return Promise.reject(new Error("введите хотя бы 1 адресс"));
+                }
+              },
+            },
+          ]}
+        >
+          {(
+            fields = editData && editData.adresses,
+            { add, remove },
+            { errors }
+          ) => (
+            <>
+              {/* {editData && editData.adresses.map{}} */}
+              {fields.map((field, index) => (
+                <Form.Item
+                  label={`адрес${index + 1}`}
+                  required={true}
+                  key={String(index)}
+                >
+                  <Form.Item
+                    // {...field}
+                    validateTrigger={["onChange", "onBlur"]}
+                    initialValue={editData && editData.adresses[index].adress}
+                    rules={[
+                      {
+                        required: true,
+                        whitespace: true,
+                        message: "Введите адрес или удалите поле!",
+                      },
+                    ]}
+                    noStyle
+                  >
+                    <Input style={{ width: "90%", marginRight: "10px" }} />
+                  </Form.Item>
+
+                  {fields.length > 1 ? (
+                    <MinusCircleOutlined
+                      className="dynamic-delete-button"
+                      onClick={() => remove(field.name)}
+                    />
+                  ) : null}
+                </Form.Item>
+              ))}
+              <Form.Item>
+                <Button
+                  type="dashed"
+                  onClick={() => add()}
+                  icon={<PlusOutlined />}
+                >
+                  добавить адрес
+                </Button>
+                <Form.ErrorList errors={errors} />
+              </Form.Item>
+            </>
+          )}
+        </Form.List>
 
         <Form.Item
           name="rate"
@@ -136,6 +184,15 @@ const CouriersForm: FC<CouriersFormProps> = ({
               </Select.Option>
             ))}
           </Select>
+        </Form.Item>
+
+        <Form.Item
+          label="время приготовления"
+          name="timeCooking"
+          rules={[{ required: true, message: "введите время приготовления" }]}
+          initialValue={editData && editData.timeCooking}
+        >
+          <InputNumber />
         </Form.Item>
 
         <Form.Item
@@ -169,4 +226,4 @@ const CouriersForm: FC<CouriersFormProps> = ({
   );
 };
 
-export default CouriersForm;
+export default PartnersForm;

@@ -6,6 +6,8 @@ export interface ICouriers {
   phone: string;
   nickName: string;
   comment?: string;
-  movementType: string;
+  movementType: "машина" | "велосипед" | "пешком";
   rate: string;
+  password: string;
+  passwordCheck: string;
 }

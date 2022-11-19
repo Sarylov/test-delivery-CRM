@@ -14,7 +14,6 @@ const Table: FC<TableProps> = ({ columns, data, pag, clickRow, ...props }) => {
           return {
             onClick: (event) => {
               clickRow && clickRow(record);
-              console.log(record);
             }, // click row
           };
         }}

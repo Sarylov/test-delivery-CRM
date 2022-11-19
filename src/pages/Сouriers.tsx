@@ -55,6 +55,8 @@ export default function Couriers() {
       comment: "хороший работник",
       movementType: "машина",
       rate: "потом придумаю",
+      password: "123",
+      passwordCheck: "123",
     },
     {
       key: "2",
@@ -66,6 +68,8 @@ export default function Couriers() {
       comment: "хороший работник",
       movementType: "велосипед",
       rate: "потом придумаю",
+      password: "123",
+      passwordCheck: "123",
     },
   ];
 

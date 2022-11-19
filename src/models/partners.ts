@@ -1,8 +1,10 @@
 export interface IPartners {
-  key:string;
+  key: string;
   organization: string;
   type: string;
   nickName: string;
+  password: string;
+  passwordCheck: string;
   phone: string;
   adresses: string[];
   rate: string;
