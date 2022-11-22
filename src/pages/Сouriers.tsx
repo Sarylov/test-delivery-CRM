@@ -6,8 +6,18 @@ import CouriersForm from "./../components/layout/Forms/CouriersForm/CouriersForm
 import { Button } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import TableLayout from "../components/layout/TableTayout/TableLayout";
+import { postAPI } from "../services/PostService";
 
 export default function Couriers() {
+  const { data: records } = postAPI.useFetchAllPostsQuery(5, {
+    pollingInterval: 3000,
+  });
+
+  useEffect(() => {
+    console.log(records);
+  }, [records]);
+
+
   const columns = [
     { title: "ID", dataIndex: "id", key: "id" },
     { title: "ФИО", dataIndex: "fullName", key: "fullName" },
@@ -46,7 +56,7 @@ export default function Couriers() {
     {
       key: 1,
       id: 312,
-      active:"на линии",
+      active: "на линии",
       status: "работает",
       fullName: "олег олеговичь вололоав",
       phone: "+79618428824",
@@ -60,7 +70,7 @@ export default function Couriers() {
     {
       key: 2,
       id: 321,
-      active:"на линии",
+      active: "на линии",
       status: "работает",
       fullName: "олег олеговичь вололоав",
       phone: "+79618428824",
