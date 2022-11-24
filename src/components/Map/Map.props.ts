@@ -1,7 +1,5 @@
+import { ReactNode } from "react";
 
-    import { ReactNode } from "react";
-
-    export interface MapProps extends React.HTMLAttributes<HTMLElement> {    
-    // children: ReactNode;
-    }
-    
+export interface MapProps extends React.HTMLAttributes<HTMLElement> {
+  // children: ReactNode;
+}

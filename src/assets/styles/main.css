@@ -3063,3 +3063,28 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   border: 1px solid rgba(215, 215, 215, 0.418);
   border-radius: 2rem;
 }
+
+.placemark-square, .placemark-circle{ 
+  width:20px;
+  height:20px;
+  transform: translate(-10px,-10px);
+  text-align: center;
+  position: relative;
+  border: 2px solid white;
+  cursor: pointer;
+  background-color: white;
+}
+
+.placemark-circle{
+  border-radius: 100%;
+}
+
+.time{
+  border: 2px solid white;
+  position: absolute;
+  top:-25px;
+  left: 50%;
+  font-size: 1.2;
+  background-color: white;
+
+}
