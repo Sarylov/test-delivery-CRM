@@ -6,18 +6,19 @@ import { Placemark, withYMaps } from "react-yandex-maps";
 const MarkerComponent = (props: any) => {
   const { ymaps, marker } = props;
   const clickMarker = () => {
-    console.log(marker.time);
+    marker.click();
   };
 
   const template = ymaps.templateLayoutFactory.createClass(
-    `<div class="placemark placemark-${marker.type}">${marker.number}
+    `<div id="marker${marker.id}" class="placemark placemark-${marker.type}">${marker.number}
           <div class="time">${marker.time}</div>    
           </div>
           <style>
-            .placemark{
+            #marker${marker.id}{
                 border-color:${marker.color};
             }
-            .time{
+
+            #marker${marker.id} .time{
                 border-color:${marker.color};
             }
           </style>
@@ -29,9 +30,13 @@ const MarkerComponent = (props: any) => {
         this.getData().geoObject.events.add("click", clickMarker, this);
 
         this.getData().options.set("shape", {
-          type: "Circle",
-          coordinates: [0, 0],
-          radius: 10,
+          type: "Rectangle",
+          coordinates: [
+            [-10, -30],
+            [30, 10],
+          ],
+
+          // radius: 10,
         });
       },
     }
@@ -52,13 +57,15 @@ const MarkerOrder: FC<MarkerOrderProps> = ({
   time,
   number,
   position,
+  click,
+  id,
   ...props
 }) => {
   const Marker = withYMaps(MarkerComponent, true, ["templateLayoutFactory"]);
 
   return (
     <div {...props}>
-      <Marker marker={{ time, type, color, number, position }} />
+      <Marker marker={{ time, type, color, number, position, click, id }} />
     </div>
   );
 };

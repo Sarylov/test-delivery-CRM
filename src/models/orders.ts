@@ -1,6 +1,6 @@
 export interface IOrders {
-  key:string;
-  id: string;
+  key: number;
+  id: number;
   status: string;
   date: string;
   time: string;
@@ -21,3 +21,9 @@ export interface IOrders {
   deliveryPrice: number;
 }
 
+export interface ICordinatesOrders extends IOrders {
+  restPos: [number, number];
+  clientPos: [number, number];
+  color: string;
+  number: number;
+}

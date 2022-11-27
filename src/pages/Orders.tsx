@@ -58,8 +58,8 @@ export default function Orders() {
 
   const data: IOrders[] = [
     {
-      key: "123",
-      id: "123",
+      key: 123,
+      id: 123,
       status: "завершон",
       date: "12.12.21",
       time: "12:12",
@@ -74,8 +74,8 @@ export default function Orders() {
       orderPrice: 123,
     },
     {
-      key: "321",
-      id: "321",
+      key: 321,
+      id: 321,
       status: "завершон",
       date: "12.12.21",
       time: "12:12",
@@ -90,8 +90,8 @@ export default function Orders() {
       orderPrice: 123,
     },
     {
-      key: "124",
-      id: "124",
+      key: 124,
+      id: 124,
       status: "завершон",
       date: "12.12.21",
       time: "12:12",

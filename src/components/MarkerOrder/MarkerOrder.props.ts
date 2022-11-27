@@ -1,10 +1,12 @@
 import { ReactNode } from "react";
 
-export interface MarkerOrderProps extends React.HTMLAttributes<HTMLElement> {
+export interface MarkerOrderProps {
   // children: ReactNode;
+  id: number;
   type: "circle" | "square";
   color?: string;
   time: string;
-  number:number;
-  position:[number, number]
+  number: number;
+  position: [number, number];
+  click: () => void;
 }

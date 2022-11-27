@@ -1122,7 +1122,7 @@ span.blue {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-.ant-table{
+.ant-table {
   overflow-x: auto;
 }
 
@@ -3052,11 +3052,11 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   path {
   fill: #8c8c8c;
 }
-.btn-add{
-  margin:  1rem 0;
+.btn-add {
+  margin: 1rem 0;
 }
-.map-wrapper{
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.217); 
+.map-wrapper {
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.217);
   overflow: hidden;
   width: 100%;
   height: 90vh;
@@ -3064,27 +3064,83 @@ section.ant-layout.ant-layout-has-sider.layout-dashboard.layout-profile
   border-radius: 2rem;
 }
 
-.placemark-square, .placemark-circle{ 
-  width:20px;
-  height:20px;
-  transform: translate(-10px,-10px);
+.placemark-square,
+.placemark-circle {
+  width: 20px;
+  height: 20px;
+  transform: translate(-10px, -10px);
   text-align: center;
   position: relative;
-  border: 2px solid white;
+  border: 2px solid #333333;
   cursor: pointer;
   background-color: white;
 }
 
-.placemark-circle{
+.placemark-circle {
   border-radius: 100%;
 }
 
-.time{
-  border: 2px solid white;
+.time {
+  border: 2px solid #333333;
   position: absolute;
-  top:-25px;
+  top: -25px;
   left: 50%;
   font-size: 1.2;
   background-color: white;
+}
 
+.map-page {
+  position: relative;
+}
+
+.window-select-courier {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 30%;
+  background-color: white;
+  width: 400px;
+  border-radius: 2rem;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.322);
+  overflow-y: auto;
+  z-index: 9000;
+}
+
+.items-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.close-window-courier {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.window-select-courier__items {
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.301);
+  padding: 0.5rem 1rem 0.2rem;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.window-select-courier__items:hover {
+  border-bottom: 1px solid rgb(21, 21, 206);
+  padding: 0.7rem 1rem;
+}
+
+.window-select-courier__items h3 {
+  text-transform: capitalize;
+}
+
+.color-courier {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
 }

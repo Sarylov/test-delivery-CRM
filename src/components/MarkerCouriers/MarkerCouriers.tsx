@@ -7,6 +7,7 @@ const MarkerCouriers: FC<MarkerCouriersProps> = ({
   type,
   color,
   postion,
+  name,
   ...props
 }) => {
   const icons = {
@@ -25,7 +26,7 @@ const MarkerCouriers: FC<MarkerCouriersProps> = ({
         }}
         properties={{
           iconContent: "3000",
-          balloonContentBody: "content",
+          balloonContentBody: name,
           hideIconOnBalloonOpen: false,
         }}
       />
