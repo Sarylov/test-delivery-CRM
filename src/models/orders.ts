@@ -24,6 +24,6 @@ export interface IOrders {
 export interface ICordinatesOrders extends IOrders {
   restPos: [number, number];
   clientPos: [number, number];
-  color: string;
+  color?: string;
   number: number;
 }

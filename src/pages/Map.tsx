@@ -48,7 +48,7 @@ export default function MapPage() {
     {
       key: 123,
       id: 123,
-      status: "завершон",
+      status: "активный",
       date: "12.12.21",
       time: "12:12",
       partnerON: "123",
@@ -61,15 +61,15 @@ export default function MapPage() {
       deliveryProce: 12,
       orderPrice: 123,
 
-      restPos: [46.3078, 44.2558],
-      clientPos: [46.3078, 44.2578],
+      restPos: [46.3178, 44.2558],
+      clientPos: [46.2978, 44.2578],
       color: "green", // не из базы присуждаю сам
       number: 2, // не из базы присуждаю сам
     },
     {
       key: 321,
       id: 321,
-      status: "завершон",
+      status: "активный",
       date: "12.12.21",
       time: "12:12",
       partnerON: "123",
@@ -82,9 +82,30 @@ export default function MapPage() {
       deliveryProce: 12,
       orderPrice: 123,
 
-      restPos: [46.3058, 44.2558],
-      clientPos: [46.3048, 44.2568],
+      restPos: [46.3058, 44.2658],
+      clientPos: [46.3048, 44.2468],
       color: "red", // не из базы присуждаю сам
+      number: 1, // не из базы присуждаю сам
+    },
+    {
+      key: 124,
+      id: 124,
+      status: "активный",
+      date: "12.12.21",
+      time: "12:12",
+      partnerON: "123",
+      distance: 15,
+      deliveryPrice: 14,
+      courier: "Владимир Владимирович",
+      courierEarned: 123,
+      paymentStatues: "оплачен",
+      paymentType: "картой",
+      deliveryProce: 12,
+      orderPrice: 123,
+
+      restPos: [46.3158, 44.2458],
+      clientPos: [46.3148, 44.2568],
+      // color: "red", // не из базы присуждаю сам
       number: 1, // не из базы присуждаю сам
     },
   ];
