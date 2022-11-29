@@ -8,6 +8,7 @@ const { Header: AntHeader, Content, Sider } = Layout;
 
 function Main({ children }) {
   const [visible, setVisible] = useState(false);
+  const [isSider, setIsSider] = useState(false);
   const [placement, setPlacement] = useState("right");
   const [sidenavColor, setSidenavColor] = useState("#1890ff");
   const [sidenavType, setSidenavType] = useState("transparent");
@@ -79,6 +80,12 @@ function Main({ children }) {
         }`}
         style={{ background: sidenavType }}
       >
+        <div className="logo-wrapper">
+          <div className="logo">
+            <img src="./logo.png" alt="no img" />
+          </div>
+          <span>Oxitech</span>
+        </div>
         <Sidenav color={sidenavColor} />
       </Sider>
       <Layout>

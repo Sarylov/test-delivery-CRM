@@ -8,7 +8,7 @@ interface IColors {
 }
 
 const MarkerLine: FC<MarkerLineProps> = ({
-  color = "#333333",
+  color = "#A0A0A0",
   start,
   end,
   ...props
@@ -38,10 +38,7 @@ const MarkerLine: FC<MarkerLineProps> = ({
           strokeColor: colors[color] ? colors[color] : color,
           strokeWidth: 3,
           strokeOpacity: 1,
-        }
-        
-    }
-        
+        }}
       />
     </div>
   );

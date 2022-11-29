@@ -1,3 +1,4 @@
+import { MenuUnfoldOutlined } from "@ant-design/icons";
 import { Menu, Button } from "antd";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -106,6 +107,9 @@ function Sidenav({ color }) {
             <span className="label">Партнеры</span>
           </NavLink>
         </Menu.Item>
+        <Button className="button-trigger" type="primary">
+          скрыть меню
+        </Button>
       </Menu>
     </>
   );

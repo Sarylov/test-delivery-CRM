@@ -53,7 +53,7 @@ const MarkerComponent = (props: any) => {
 
 const MarkerOrder: FC<MarkerOrderProps> = ({
   type,
-  color = "#333333",
+  color = "#A0A0A0",
   time,
   number,
   position,

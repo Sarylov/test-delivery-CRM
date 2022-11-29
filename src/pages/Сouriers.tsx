@@ -1,23 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ICouriers } from "../models/couriers";
-import Table from "../components/Table/Table";
 import CouriersForm from "./../components/layout/Forms/CouriersForm/CouriersForm";
-import { Button } from "antd";
-import Modal from "antd/lib/modal/Modal";
 import TableLayout from "../components/layout/TableTayout/TableLayout";
-import { postAPI } from "../services/PostService";
 
 export default function Couriers() {
-  const { data: records } = postAPI.useFetchAllPostsQuery(5, {
-    pollingInterval: 3000,
-  });
-
-  useEffect(() => {
-    console.log(records);
-  }, [records]);
-
-
   const columns = [
     { title: "ID", dataIndex: "id", key: "id" },
     { title: "ФИО", dataIndex: "fullName", key: "fullName" },
