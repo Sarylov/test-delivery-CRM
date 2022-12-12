@@ -1,18 +1,24 @@
-import React from "react";
-import { Layout } from "antd";
-import { Outlet } from "react-router-dom";
+import React from 'react'
+import { Outlet } from 'react-router-dom'
+import { Layout } from 'antd'
+import { SiderTheme } from 'antd/lib/layout/Sider'
 
-const { Sider, Content } = Layout;
+const { Content, Sider } = Layout
 
 interface IRootLayout {
-  collapsed: boolean;
-  siderContent: JSX.Element;
+  collapsed: boolean
+  theme?: SiderTheme
+  siderContent?: JSX.Element
 }
 
-const RootLayout: React.FC<IRootLayout> = ({ collapsed, siderContent }) => {
+export const RootLayout: React.FC<IRootLayout> = ({
+  collapsed,
+  theme = 'light',
+  siderContent,
+}) => {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider theme={theme} trigger={null} collapsible collapsed={collapsed}>
         {siderContent}
       </Sider>
       <Layout>
@@ -21,7 +27,5 @@ const RootLayout: React.FC<IRootLayout> = ({ collapsed, siderContent }) => {
         </Content>
       </Layout>
     </Layout>
-  );
-};
-
-export default RootLayout;
+  )
+}

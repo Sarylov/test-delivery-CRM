@@ -1,24 +1,28 @@
-import { useState } from "react";
-import { DoubleRightOutlined, DoubleLeftOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from 'react'
+import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons'
 
-const SIDE_MENU_KEY = "side-menu";
+const MENU_STATE_LS_KEY = 'menu_collapsed'
+
+const getCollapseIcon = (collapsed: boolean): JSX.Element =>
+  collapsed ? <DoubleRightOutlined /> : <DoubleLeftOutlined />
 
 const getStateFromLocalStorage = (): boolean =>
-  JSON.parse(localStorage.getItem(SIDE_MENU_KEY) || "false");
-
-const getCollapsedIcons = (collapsed: boolean): JSX.Element =>
-  collapsed ? <DoubleRightOutlined /> : <DoubleLeftOutlined />;
+  JSON.parse(localStorage.getItem(MENU_STATE_LS_KEY) || 'false')
 
 export const useSideMenu = () => {
-  const [collapsed, setCollapsed] = useState(getStateFromLocalStorage());
+  const [collapsed, setCollapsed] = useState(getStateFromLocalStorage())
 
-  const switchCollapsed = () => {
-    setCollapsed((prev) => !prev);
-  };
+  function switchCollapsed() {
+    setCollapsed(!collapsed)
+  }
+
+  useEffect(() => {
+    localStorage.setItem(MENU_STATE_LS_KEY, JSON.stringify(collapsed))
+  }, [collapsed])
 
   return {
     collapsed,
     switchCollapsed,
-    getCollapsedIcons,
-  };
-};
+    getCollapseIcon,
+  }
+}
