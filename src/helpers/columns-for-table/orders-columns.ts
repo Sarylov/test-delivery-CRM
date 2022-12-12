@@ -1,0 +1,52 @@
+export const ordersColumns = [
+  { title: 'номер', dataIndex: 'id', key: 'id' },
+  { title: 'дата', dataIndex: 'date', key: 'date' },
+  { title: 'время', dataIndex: 'time', key: 'time' },
+  { title: 'организация', dataIndex: 'organization', key: 'organization' },
+  { title: '№ заказа портнера', dataIndex: 'partnerON', key: 'partnerON' },
+  { title: 'комментарий', dataIndex: 'comment', key: 'comment' },
+  {
+    title: 'расстояние в км',
+    dataIndex: 'distance',
+    key: 'distance',
+    sorter: (a: any, b: any) => a.distance - b.distance,
+  },
+  {
+    title: 'стоймость доставки',
+    dataIndex: 'deliveryProce',
+    key: 'deliveryProce',
+    sorter: (a: any, b: any) => a.deliveryProce - b.deliveryProce,
+  },
+  { title: 'курьер', dataIndex: 'courier', key: 'courier' },
+  { title: 'время плановое приготовления', dataIndex: 't1', key: 't1' },
+  {
+    title: 'время нажатия прибыл к точке подбора',
+    dataIndex: '10',
+    key: '10',
+  },
+  { title: 'время нажатия забрал заказ', dataIndex: 't2', key: 't2' },
+  { title: 'время нажатия прибыл к клиенту', dataIndex: 't3', key: 't3' },
+  { title: 'время нажатия завершил заказ', dataIndex: 't4', key: 't4' },
+  { title: 'время  доставить до', dataIndex: 't5', key: 't5' },
+  {
+    title: 'оплата курьеру',
+    dataIndex: 'courierEarned',
+    key: 'courierEarned',
+    sorter: (a: any, b: any) => a.courierEarned - b.courierEarned,
+  },
+  {
+    title: 'Статус оплаты',
+    dataIndex: 'paymentStatues',
+    key: 'paymentStatues',
+    filters: [
+      { text: 'оплачен', value: 'оплачен' },
+      { text: 'не оплачен', value: 'не оплачен' },
+    ],
+    filterMode: 'tree',
+    onFilter: (value: string, record: any) =>
+      record.paymentStatues.startsWith(value),
+  },
+  { title: 'тип оплаты', dataIndex: 'paymentType', key: 'paymentType' },
+  { title: 'сумма', dataIndex: 'orderPrice', key: 'orderPrice' },
+  { title: 'доставка', dataIndex: 'deliveryPrice', key: 'deliveryPrice' },
+]
